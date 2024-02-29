@@ -1,0 +1,129 @@
+.top {
+    background-color: #060701;
+    height: 200px;
+}
+
+.nav {
+    margin: 0 auto;
+    padding: 30px;
+    display: flex;
+    background-color: #ffffff;
+    max-width: 1080px;
+    width: 90%;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 10px;
+    transform: translateY(-55px);
+    backdrop-filter: blur(20px);
+    color: #5a5a5a;
+}
+
+.filter {
+    display: none;
+}
+
+.navList {
+    width: 70%;
+    list-style-type: none;
+    display: flex;
+    justify-content: space-between;
+}
+
+.navList li {
+    cursor: pointer;
+    transition: all 0.1s linear;
+    font-weight: 700;
+}
+
+.navList li:hover {
+    color: black;
+    transform: translateX(-2px);
+}
+
+.inputContainer {
+    width: 30%;
+    margin: 0 20px;
+    position: relative;
+}
+
+.input {
+    border: none;
+    outline: none;
+    width: 100%;
+    font-weight: 600;
+    background-color: white;
+    border: 2px solid rgb(218, 218, 218);
+    padding: 10px 10px;
+    padding-right: 35px;
+    border-radius: 5px;
+    transition: all 0.1s ease-in;
+}
+
+.input::placeholder {
+    font-weight: normal;
+}
+
+.input:focus {
+    border-color: rgb(177, 177, 177);
+}
+
+.icon {
+    position: absolute;
+    top: 0%;
+    right: 0;
+    transform: translate3d(-13px, 12px, 0);
+}
+
+@media (max-width:600px) {
+    .nav {
+        position: relative;
+        flex-direction: column-reverse;
+
+    }
+
+    .navList {
+        position: absolute;
+        background-color: #ffffff;
+        font-size: small;
+        padding: 10px 20px;
+        width: 100%;
+        transform: translate(600px, 300px);
+        opacity: 0;
+        transition: .5s;
+        border-radius: 10px;
+        flex-direction: row;
+        flex-wrap: wrap;
+
+
+
+    }
+
+    .navList.active {
+        transform: translate(0px, 55px);
+        opacity: 1;
+    }
+
+    .filter {
+
+        display: block;
+        text-align: center;
+        width: 100px;
+        margin-top: 32px;
+        cursor: pointer;
+        background-color: #252525;
+        color: rgb(226, 226, 226);
+        border-radius: 5px;
+        padding: 10px;
+        transition: all .2s ease-in-out;
+    }
+
+    .filter:hover {
+        background-color: #000000;
+        color: rgb(255, 255, 255);
+    }
+
+    .inputContainer {
+        width: 100%;
+        margin: 0;
+    }
+}
