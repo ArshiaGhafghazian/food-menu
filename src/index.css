@@ -1,5 +1,15 @@
+@font-face {
+  font-family: "yekanBakh";
+  src: url("./fonts/Yekan-Bakh-FaNum-04-Regular.woff") format("woff");
+}
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: yekanBakh;
+}
+
+body {
+  background-color: rgb(231, 231, 231)
 }
