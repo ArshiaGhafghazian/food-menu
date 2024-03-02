@@ -54,9 +54,8 @@ function Header() {
                         ) : (
                             <>
                                 <ul
-                                    className={`${styles.navList} ${
-                                        isOpen && styles.active
-                                    } `}
+                                    className={`${styles.navList} ${isOpen && styles.active
+                                        } `}
                                 >
                                     <li>
                                         <a>همه</a>

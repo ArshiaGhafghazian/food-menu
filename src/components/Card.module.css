@@ -1,0 +1,35 @@
+.container {
+  background-color: white;
+  border-radius: 10px;
+  overflow: hidden;
+}
+.image {
+  width: 100%;
+}
+
+.title {
+  text-align: center;
+}
+
+.ingredients{
+    text-align: center;
+    margin: 5px 0;
+    height: 50px;
+    
+}
+
+.price {
+    text-align: center;
+    font-weight: 600;
+    border: 2px solid greenyellow;
+    border-radius: 5px;
+    margin: 30px;
+    padding: 5px 0;
+    transition: all 0.2s ease-in-out;
+}
+
+.price:hover {
+    background-color: greenyellow;
+    border-color: black;
+}
+

@@ -11,5 +11,6 @@
 }
 
 body {
-  background-color: rgb(231, 231, 231)
+  background-color: rgb(231, 231, 231);
+  overflow-x: hidden;
 }
