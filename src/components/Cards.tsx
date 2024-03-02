@@ -30,12 +30,12 @@ function Cards() {
   }, [])
 
 
-  
+
   return (
-    
+
     <div className={styles.container}>
-      {isLoading && <div style={{width:"100%",display:"flex", justifyContent:"center"}}><Spinner /></div>}
-      {error && <div style={{width:"100%",display:"flex", justifyContent:"center", color:"red"}}>مشکلی پیش آمده است</div>}
+      {isLoading && <div style={{ width: "100%", display: "flex", justifyContent: "center" }}><Spinner /></div>}
+      {error && <div style={{ width: "100%", display: "flex", justifyContent: "center", color: "red" }}>مشکلی پیش آمده است</div>}
       <div className={styles.grid}>
         {fastFoodList?.map((fastFood) => (<Card key={fastFood.id} {...fastFood} />))}
       </div>
