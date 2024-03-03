@@ -8,9 +8,9 @@ import { FilterContext } from "../context/FilterFastFoodContext"
 
 function Cards() {
 
-  const { fastFoodList, setFastFoodList,isLoading, setIsLoading,error,setError } = useContext(FilterContext)
+  const { fastFoodList, setFastFoodList, isLoading, setIsLoading, error, setError } = useContext(FilterContext)
 
-  
+
 
   const getFastFoodList = async () => {
     try {
@@ -32,15 +32,18 @@ function Cards() {
   }, [])
 
 
-
   return (
 
     <div className={styles.container}>
-      {isLoading && <div style={{ width: "100%", display: "flex", justifyContent: "center" }}><Spinner /></div>}
       {error && <div style={{ width: "100%", display: "flex", justifyContent: "center", color: "red" }}>مشکلی پیش آمده است</div>}
-      <div className={styles.grid}>
-        {fastFoodList?.map((fastFood) => (<Card key={fastFood.id} {...fastFood} />))}
-      </div>
+      {isLoading ? (<div style={{ width: "100%", display: "flex", justifyContent: "center" }}><Spinner /></div>) : <>
+        
+        {fastFoodList.length < 1 && <div style={{ width: "100%", display: "flex", justifyContent: "center", color: "red" }}>چیزی برای نمایش وجود ندارد</div>}
+        <div className={styles.grid}>
+          {fastFoodList?.map((fastFood) => (<Card key={fastFood.id} {...fastFood} />))}
+        </div>
+      </>}
+
 
     </div>
   )

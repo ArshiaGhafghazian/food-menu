@@ -12,6 +12,8 @@ function Header() {
     const [loading, setLoading] = useState<boolean>(true)
     const [error, setError] = useState<boolean>(false)
 
+    const [inputValue, setInputValue] = useState("")
+
     const { setFastFoodList, setIsLoading } = useContext(FilterContext)
 
     const fastFoodFilterHandler = async (id?: number) => {
@@ -50,9 +52,39 @@ function Header() {
         setIsOpen(!isOpen)
     }
 
+    const inputChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setInputValue(event.target.value)
+    }
+
+    const searchHandler = async () => {
+        setFastFoodList([])
+        setIsLoading(true)
+        try {
+            const response = await fetch(`https://react-mini-projects-api.classbon.com/FastFood/search${inputValue ? `?term=${inputValue}` : ""}`)
+            const result = await response.json()
+            setFastFoodList(result)
+
+        } catch (error) {
+            console.log(error);
+
+        } finally {
+            setIsLoading(false)
+        }
+
+    }
+
     useEffect(() => {
         getCategories()
     }, [])
+
+    useEffect(() => {
+        const timeOut = setTimeout(() => {
+            searchHandler()
+        }, 700)
+
+        return () => clearTimeout(timeOut)
+
+    }, [inputValue])
 
     return (
         <header>
@@ -101,6 +133,8 @@ function Header() {
                                         className={styles.input}
                                         type="text"
                                         placeholder="جستجو"
+                                        value={inputValue}
+                                        onChange={inputChangeHandler}
                                     />
                                     <div className={styles.icon}>
                                         <CiSearch size={20} />
