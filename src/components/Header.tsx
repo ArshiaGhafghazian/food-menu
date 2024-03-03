@@ -1,19 +1,19 @@
 import { useContext, useEffect, useState } from "react"
-import styles from "./Header.module.css"
-import { CiSearch } from "react-icons/ci"
 import { FastFoodCategories } from "../types/FastFoodCategories.type"
-import Spinner from "./Spinner"
 import { FilterContext } from "../context/FilterFastFoodContext"
-function Header() {
-    const [isOpen, setIsOpen] = useState<boolean>(false)
-    const [fastFoodCategories, setFastFoodCategories] =
-        useState<FastFoodCategories[]>()
+import Spinner from "./Spinner"
+import { CiSearch } from "react-icons/ci"
+import styles from "./Header.module.css"
 
+
+
+function Header() {
+    const [fastFoodCategories, setFastFoodCategories] = useState<FastFoodCategories[]>()
+    const [isOpen, setIsOpen] = useState<boolean>(false)
     const [loading, setLoading] = useState<boolean>(true)
     const [error, setError] = useState<boolean>(false)
-
     const [inputValue, setInputValue] = useState("")
-
+    
     const { setFastFoodList, setIsLoading } = useContext(FilterContext)
 
     const fastFoodFilterHandler = async (id?: number) => {
@@ -48,13 +48,6 @@ function Header() {
         }
     }
 
-    const filterHandler = () => {
-        setIsOpen(!isOpen)
-    }
-
-    const inputChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setInputValue(event.target.value)
-    }
 
     const searchHandler = async () => {
         setFastFoodList([])
@@ -73,8 +66,13 @@ function Header() {
 
     }
 
+    const inputChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setInputValue(event.target.value)
+    }
+
     useEffect(() => {
         getCategories()
+
     }, [])
 
     useEffect(() => {
@@ -124,7 +122,7 @@ function Header() {
                                 </ul>
                                 <div
                                     className={styles.filter}
-                                    onClick={filterHandler}
+                                    onClick={()=>setIsOpen(!isOpen)}
                                 >
                                     {isOpen ? "بستن فیلتر" : "نمایش فیلتر"}
                                 </div>
