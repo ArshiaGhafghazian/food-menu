@@ -89,7 +89,7 @@ function Header() {
     return (
         <header>
             <div className={styles.top}>
-                <img src="../../public/pizza.jpg" alt="" />
+                <img src="/pizza.jpg" alt="پیتزا" />
             </div>
             <nav className={styles.nav}>
                 {loading ? (
