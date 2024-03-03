@@ -1,14 +1,16 @@
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import Card from "./Card"
 import styles from "./Cards.module.css"
-import { FastFoodListType } from "../types/FastFoodList.type"
 import Spinner from "./Spinner"
+import { FilterContext } from "../context/FilterFastFoodContext"
+
+
 
 function Cards() {
 
-  const [fastFoodList, setFastFoodList] = useState<FastFoodListType[]>()
-  const [isLoading, setIsLoading] = useState<boolean>(true)
-  const [error, setError] = useState<boolean>(false)
+  const { fastFoodList, setFastFoodList,isLoading, setIsLoading,error,setError } = useContext(FilterContext)
+
+  
 
   const getFastFoodList = async () => {
     try {

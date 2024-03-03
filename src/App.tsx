@@ -1,12 +1,18 @@
+
 import "./App.css"
 import Cards from "./components/Cards"
 import Header from "./components/Header"
 
+import FilterFastFoodContext from "./context/FilterFastFoodContext"
+
 function App() {
+
     return (
         <>
-            <Header />
-            <Cards />
+            <FilterFastFoodContext>
+                <Header />
+                <Cards />
+            </FilterFastFoodContext>
         </>
     )
 }

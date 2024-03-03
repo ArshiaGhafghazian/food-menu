@@ -1,15 +1,36 @@
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import styles from "./Header.module.css"
 import { CiSearch } from "react-icons/ci"
 import { FastFoodCategories } from "../types/FastFoodCategories.type"
 import Spinner from "./Spinner"
+import { FilterContext } from "../context/FilterFastFoodContext"
 function Header() {
     const [isOpen, setIsOpen] = useState<boolean>(false)
     const [fastFoodCategories, setFastFoodCategories] =
         useState<FastFoodCategories[]>()
 
-    const [isLoading, setIsLoading] = useState<boolean>(true)
+    const [loading, setLoading] = useState<boolean>(true)
     const [error, setError] = useState<boolean>(false)
+
+    const { setFastFoodList, setIsLoading } = useContext(FilterContext)
+
+    const fastFoodFilterHandler = async (id?: number) => {
+        setFastFoodList([])
+        setIsLoading(true)
+        try {
+            const res = await fetch(
+                `https://react-mini-projects-api.classbon.com/FastFood/list${id ? `?categoryId=${id.toString()}` : ""}`
+            )
+            const list = await res.json()
+            setFastFoodList(list)
+        } catch (error) {
+            console.log(error);
+
+
+        } finally {
+            setIsLoading(false)
+        }
+    }
 
     const getCategories = async () => {
         try {
@@ -21,7 +42,7 @@ function Header() {
         } catch (error) {
             setError(true)
         } finally {
-            setIsLoading(false)
+            setLoading(false)
         }
     }
 
@@ -39,7 +60,7 @@ function Header() {
                 <img src="../../public/pizza.jpg" alt="" />
             </div>
             <nav className={styles.nav}>
-                {isLoading ? (
+                {loading ? (
                     <div className={styles.loadingContainer}>
                         <Spinner />
                     </div>
@@ -57,13 +78,13 @@ function Header() {
                                     className={`${styles.navList} ${isOpen && styles.active
                                         } `}
                                 >
-                                    <li>
+                                    <li onClick={() => fastFoodFilterHandler()}>
                                         <a>همه</a>
                                     </li>
 
                                     {fastFoodCategories?.map((category) => {
                                         return (
-                                            <li key={category.id}>
+                                            <li key={category.id} onClick={() => fastFoodFilterHandler(category.id)}>
                                                 <a>{category.name}</a>
                                             </li>
                                         )
