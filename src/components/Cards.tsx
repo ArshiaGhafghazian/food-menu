@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react"
+import { useContext, useEffect } from "react"
 import Card from "./Card"
 import styles from "./Cards.module.css"
 import Spinner from "./Spinner"
